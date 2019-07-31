@@ -1,11 +1,2 @@
-# Project Title
-[description]
-
-## Getting Started
-[Instructions]
-
-### Prerequisites
-[dependencies]
-
-### Installing
-[steps]
+# Data Structures and Algorithims
+A collection of data structures and algorithims written in C
