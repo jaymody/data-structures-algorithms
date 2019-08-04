@@ -113,11 +113,26 @@ void PrintList(struct LinkedList* list) {
     printf("\n");
 }
 
+// clear list
+void ClearList(struct LinkedList* list) {
+    struct Node* node = list->head;
+
+    while (node != NULL) {
+        list->head = node->next;
+        free(node);
+        node = list->head;
+    }
+
+    free(list->head);
+    list->size = 0;
+}
+
+
 // get length (number of nodes) in list
 int Length(struct LinkedList* list) {
     return list->size;
 }
- 
+
 
 // main function
 int main() {
@@ -127,12 +142,23 @@ int main() {
     InsertHead(mylist, 1);
     InsertTail(mylist, 5);
 
+    printf("size: %d \t", Length(mylist));
     PrintList(mylist);
+
     ReverseList(mylist);
+    printf("size: %d \t", Length(mylist));
     PrintList(mylist);
+
     DeleteHead(mylist);
+    printf("size: %d \t", Length(mylist));
     PrintList(mylist);
+
     DeleteTail(mylist);
+    printf("size: %d \t", Length(mylist));
+    PrintList(mylist);
+
+    ClearList(mylist);
+    printf("size: %d \t", Length(mylist));
     PrintList(mylist);
 
     return 0;
