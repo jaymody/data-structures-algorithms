@@ -1,23 +1,23 @@
 /* singly linked list implementation */
-// includes
+
+////// Includes //////
 #include <stdio.h>
 #include <stdlib.h>
 
 
-// node structure
+////// Structs ///////
 struct Node {
     int val;
     struct Node* next;
 };
 
-// singly linked list structure
 struct LinkedList {
     int size;
     struct Node* head;
 };
 
 
-// allocate new Node
+////// Create Structs ///////
 struct Node* CreateNode(int val) {
     struct Node* node = malloc(sizeof(struct Node));
     node->next = NULL;
@@ -25,7 +25,6 @@ struct Node* CreateNode(int val) {
     return node;
 }
 
-// allocate new LinkedList
 struct LinkedList* CreateList() {
     struct LinkedList* list = malloc(sizeof(struct LinkedList));
     list->head = NULL;
@@ -34,7 +33,7 @@ struct LinkedList* CreateList() {
 }
 
 
-// insert node at head
+////// Linked List Functions //////
 void InsertHead(struct LinkedList* list, int val) {
     struct Node* node = CreateNode(val);
     node->next = list->head;
@@ -42,7 +41,6 @@ void InsertHead(struct LinkedList* list, int val) {
     list->size++;
 }
 
-// delete head node
 void DeleteHead(struct LinkedList* list) {
     if (list->head) {
         struct Node* temp = list->head;
@@ -52,7 +50,6 @@ void DeleteHead(struct LinkedList* list) {
     }
 }
 
-// insert node at tail
 void InsertTail(struct LinkedList* list, int val) {
     struct Node* new_node = CreateNode(val);
 
@@ -69,7 +66,6 @@ void InsertTail(struct LinkedList* list, int val) {
     list->size++;
 }
 
-// delete tail node
 void DeleteTail(struct LinkedList* list) {
     if (list->head) {
         struct Node* node = list->head;
@@ -86,7 +82,6 @@ void DeleteTail(struct LinkedList* list) {
     }
 }
 
-// reverse the list
 void ReverseList(struct LinkedList* list) {
     struct Node* current = list->head;
     struct Node* rev = NULL;
@@ -102,7 +97,6 @@ void ReverseList(struct LinkedList* list) {
     list->head = rev;
 }
 
-// print values in list
 void PrintList(struct LinkedList* list) {
     struct Node* node = list->head;
 
@@ -113,7 +107,6 @@ void PrintList(struct LinkedList* list) {
     printf("\n");
 }
 
-// clear list
 void ClearList(struct LinkedList* list) {
     struct Node* node = list->head;
 
@@ -127,39 +120,6 @@ void ClearList(struct LinkedList* list) {
     list->size = 0;
 }
 
-
-// get length (number of nodes) in list
 int Length(struct LinkedList* list) {
     return list->size;
-}
-
-
-// main function
-int main() {
-    struct LinkedList* mylist = CreateList();
-    InsertHead(mylist, 4);
-    InsertHead(mylist, 3);
-    InsertHead(mylist, 1);
-    InsertTail(mylist, 5);
-
-    printf("size: %d \t", Length(mylist));
-    PrintList(mylist);
-
-    ReverseList(mylist);
-    printf("size: %d \t", Length(mylist));
-    PrintList(mylist);
-
-    DeleteHead(mylist);
-    printf("size: %d \t", Length(mylist));
-    PrintList(mylist);
-
-    DeleteTail(mylist);
-    printf("size: %d \t", Length(mylist));
-    PrintList(mylist);
-
-    ClearList(mylist);
-    printf("size: %d \t", Length(mylist));
-    PrintList(mylist);
-
-    return 0;
 }
