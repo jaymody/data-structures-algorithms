@@ -3,6 +3,7 @@
 ////// Includes //////
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 ////// Structs //////
 struct Node {
@@ -33,6 +34,10 @@ struct BinaryTree* CreateBinaryTree() {
 
 
 ////// Binary Tree Functions ///////
+bool IsEmpty(struct BinaryTree* tree) {
+    return tree->root == NULL;
+}
+
 void _InsertNode(struct Node** node, int val) {
     if (*node == NULL)
         *node = CreateNode(val);
@@ -53,8 +58,7 @@ void _PreOrderVisit(struct Node* root, void (*fn)(struct Node*)) {
         _PreOrderVisit(root->left, fn);
         _PreOrderVisit(root->right, fn);
     }
-}
-void PreOrderVisit(struct BinaryTree* tree, void (*fn)(struct Node*)) {
+} void PreOrderVisit(struct BinaryTree* tree, void (*fn)(struct Node*)) {
     _PreOrderVisit(tree->root, fn);
 } 
 
@@ -66,8 +70,7 @@ void _InOrderVisit(struct Node* root, void (*fn)(struct Node*)) {
         (*fn)(root);
         _InOrderVisit(root->right, fn);
     }
-}
-void InOrderVisit(struct BinaryTree* tree, void (*fn)(struct Node*)) {
+} void InOrderVisit(struct BinaryTree* tree, void (*fn)(struct Node*)) {
     _InOrderVisit(tree->root, fn);
 } 
 
@@ -79,8 +82,7 @@ void _PostOrderVisit(struct Node* root, void (*fn)(struct Node*)) {
         _PostOrderVisit(root->right, fn);
         (*fn)(root);
     }
-}
-void PostOrderVisit(struct BinaryTree* tree, void (*fn)(struct Node*)) {
+} void PostOrderVisit(struct BinaryTree* tree, void (*fn)(struct Node*)) {
     _PostOrderVisit(tree->root, fn);
 }
 
@@ -88,8 +90,11 @@ void PrintNode(struct Node* node) {
     printf("%d, ", node->val);
 }
 
-void ClearTree(struct BinaryTree* tree) {
-
+void FreeNode(struct Node* root) {
+    free(root);
+} void ClearTree(struct BinaryTree* tree) {
+    PostOrderVisit(tree, FreeNode);
+    tree->root = NULL;
 }
 
 // WARNING: only works for smaller trees with small values
@@ -107,8 +112,7 @@ void _PrintTree(struct Node* root, int space) {
     printf("%d", root->val);
     
     _PrintTree(root->left, space);
-}
-void PrintTree(struct BinaryTree* tree) {
+} void PrintTree(struct BinaryTree* tree) {
     _PrintTree(tree->root, 0);
     printf("\n");
 }
