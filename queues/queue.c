@@ -58,7 +58,7 @@ int Pop(struct Queue* queue) {
     if (!IsEmpty(queue)) {
         struct Node* node = queue->front->prev;
         int val = queue->front->val;
-        free(queue->first)
+        free(queue->front);
         queue->front = queue->front->prev;
         free(node);
         node = NULL;
