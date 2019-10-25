@@ -5,7 +5,7 @@
 void test0() {
     /* null test */
     // Create
-    struct Queue* myqueue = CreateQueue();
+    Queue* myqueue = CreateQueue();
     printf("Is Empty after init:\t%s\n", IsEmpty(myqueue) ? "true" : "false");
 
     // Pushing
@@ -15,18 +15,18 @@ void test0() {
     // Print
     printf("Front:\t%d\n", Front(myqueue));
     printf("Back:\t%d\n", Back(myqueue));
-    printf("Forwards:\t");
-    Forwards(myqueue, PrintNode);
+    printf("FrontToBack:\t");
+    FrontToBack(myqueue, PrintNode);
     printf("\n");
 
-    printf("Backwards:\t");
-    Backwards(myqueue, PrintNode);
+    printf("BackToFront:\t");
+    BackToFront(myqueue, PrintNode);
     printf("\n\n");
 
     // Pop
     printf("Popping:\n");
-    printf("returned: %d\tforwards: ", Pop(myqueue));
-    Forwards(myqueue, PrintNode);
+    printf("returned: %d\tFrontToBack: ", Pop(myqueue));
+    FrontToBack(myqueue, PrintNode);
     printf("\n\n");
 
     // Verify Empty
@@ -39,9 +39,9 @@ void test0() {
     // printf("\nIs Empty after clear:\t%s\n", IsEmpty(myqueue) ? "true" : "false");
 }
 void test1() {
-    /* null test */
+    /* ordered test */
     // Create
-    struct Queue* myqueue = CreateQueue();
+    Queue* myqueue = CreateQueue();
     printf("Is Empty after init:\t%s\n", IsEmpty(myqueue) ? "true" : "false");
 
     // Pushing
@@ -54,20 +54,20 @@ void test1() {
     // Print
     printf("Front:\t%d\n", Front(myqueue));
     printf("Back:\t%d\n", Back(myqueue));
-    printf("Forwards:\t");
-    Forwards(myqueue, PrintNode);
+    printf("FrontToBack:\t");
+    FrontToBack(myqueue, PrintNode);
     printf("\n");
 
-    printf("Backwards:\t");
-    Backwards(myqueue, PrintNode);
+    printf("BackToFront:\t");
+    BackToFront(myqueue, PrintNode);
     printf("\n\n");
 
     // Pop
     printf("Popping:\n");
-    for (int i = 0; i < 6; i++) {
-        printf("returned: %d\tforwards: ", Pop(myqueue));
-        Forwards(myqueue, PrintNode);
-        printf("\n\n");
+    for (int i = 0; i < 5; i++) {
+        printf("returned: %d\tFrontToBack: ", Pop(myqueue));
+        FrontToBack(myqueue, PrintNode);
+        printf("\n");
     }
     printf("\n\n");
 
@@ -75,10 +75,6 @@ void test1() {
     printf("Is Empty after Pop:\t%s\n", IsEmpty(myqueue) ? "true" : "false");
     printf("Front:\t%d\n", Front(myqueue));
     printf("Back:\t%d\n", Back(myqueue));
-
-    // // Clear
-    // ClearTree(myqueue);
-    // printf("\nIs Empty after clear:\t%s\n", IsEmpty(myqueue) ? "true" : "false");
 }
 
 ////// Run Test //////
