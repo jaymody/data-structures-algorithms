@@ -1,2 +1,2 @@
 # Data Structures and Algorithims
-A collection of data structures and algorithims written in C
+A collection of fundamental data structures and algorithims implementations written in C or C++
